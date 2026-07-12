@@ -44,31 +44,18 @@
 
             <div class="gold-line"></div>
 
+<input id="cameraInput" type="file" accept="image/*" capture="environment">
 
-            <label class="upload-button">
+<label for="cameraInput" class="button">
+    📸 Take a Photo
+</label>
 
-                📸 Take a Photo
+<input id="galleryInput" type="file" accept="image/*">
 
-                <input
-                    id="cameraInput"
-                    type="file"
-                    accept="image/*"
-                    capture="environment">
-
-            </label>
-
-
-            <label class="gallery-button">
-
-                🖼 Choose from Gallery
-
-                <input
-                    id="galleryInput"
-                    type="file"
-                    accept="image/*">
-
-            </label>
-
+<label for="galleryInput" class="button second">
+    🖼 Choose from Gallery
+</label>
+           
 
 
             <div id="previewContainer" class="hidden">
