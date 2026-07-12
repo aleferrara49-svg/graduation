@@ -34,11 +34,12 @@
         id="cameraInput" 
         type="file" 
         accept="image/*"
+        style="display:none"
     >
 
-    <label for="cameraInput" class="button">
+    <button class="button" onclick="document.getElementById('cameraInput').click()">
         📸 Take a Photo
-    </label>
+    </button>
 
 
 
@@ -46,11 +47,12 @@
         id="galleryInput" 
         type="file" 
         accept="image/*"
+        style="display:none"
     >
 
-    <label for="galleryInput" class="button second">
+    <button class="button second" onclick="document.getElementById('galleryInput').click()">
         🖼 Choose from Gallery
-    </label>
+    </button>
 
 
 
