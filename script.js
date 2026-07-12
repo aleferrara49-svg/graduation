@@ -1,62 +1,158 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
+body {
 
-import { 
-    getStorage 
-} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-storage.js";
+    min-height:100vh;
 
+    margin:0;
 
-const firebaseConfig = {
-  apiKey: "AIzaSyAzQ1Igp_eCFjyvFYfHSSl_OCgBfOWK1jg",
-  authDomain: "laurea-di-alessandra.firebaseapp.com",
-  projectId: "laurea-di-alessandra",
-  storageBucket: "laurea-di-alessandra.firebasestorage.app",
-  messagingSenderId: "377947615238",
-  appId: "1:377947615238:web:2d81f2390ddd8224129387"
-};
+    display:flex;
 
+    justify-content:center;
 
-const app = initializeApp(firebaseConfig);
+    align-items:center;
 
-const storage = getStorage(app);
+    background:#f7f8f4;
 
-
-console.log("Firebase collegato 🎓");
-
-
-const camera = document.getElementById("cameraInput");
-const gallery = document.getElementById("galleryInput");
-
-const preview = document.getElementById("preview");
-
-const uploadButton = document.getElementById("uploadButton");
-
-
-function showPhoto(file) {
-
-    if (!file) return;
-
-    const reader = new FileReader();
-
-    reader.onload = function(e) {
-
-        preview.src = e.target.result;
-
-        preview.classList.remove("hidden");
-
-        uploadButton.classList.remove("hidden");
-
-    };
-
-    reader.readAsDataURL(file);
+    font-family:Arial, sans-serif;
 
 }
 
 
-camera.addEventListener("change", function() {
-    showPhoto(this.files[0]);
-});
+.card {
+
+    width:90%;
+
+    max-width:450px;
+
+    text-align:center;
+
+    background:white;
+
+    padding:40px 25px;
+
+    border-radius:25px;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.12);
+
+}
 
 
-gallery.addEventListener("change", function() {
-    showPhoto(this.files[0]);
-});
+.cap {
+
+    font-size:60px;
+
+}
+
+
+h1 {
+
+    color:#6B8E6B;
+
+    font-size:42px;
+
+}
+
+
+p {
+
+    color:#555;
+
+    font-size:18px;
+
+}
+
+
+.line {
+
+    width:100px;
+
+    height:3px;
+
+    background:#C9A227;
+
+    margin:25px auto;
+
+}
+
+
+input {
+
+    display:none;
+
+}
+
+
+
+.button,
+.upload {
+
+    display:block;
+
+    width:100%;
+
+    padding:18px;
+
+    margin:15px 0;
+
+    border-radius:15px;
+
+    background:#6B8E6B;
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    border:none;
+
+    box-sizing:border-box;
+
+}
+
+
+.second {
+
+    background:white;
+
+    color:#6B8E6B;
+
+    border:2px solid #C9A227;
+
+}
+
+
+button {
+
+    font-family:inherit;
+
+}
+
+
+
+#preview {
+
+    width:100%;
+
+    margin-top:20px;
+
+    border-radius:15px;
+
+}
+
+
+.hidden {
+
+    display:none;
+
+}
+
+
+footer {
+
+    margin-top:30px;
+
+    color:#888;
+
+}
