@@ -1,158 +1,129 @@
-body {
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-app.js";
 
-    min-height:100vh;
-
-    margin:0;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    background:#f7f8f4;
-
-    font-family:Arial, sans-serif;
-
-}
+import { 
+    getStorage,
+    ref,
+    uploadBytes
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-storage.js";
 
 
-.card {
-
-    width:90%;
-
-    max-width:450px;
-
-    text-align:center;
-
-    background:white;
-
-    padding:40px 25px;
-
-    border-radius:25px;
-
-    box-shadow:0 15px 40px rgba(0,0,0,.12);
-
-}
+const firebaseConfig = {
+  apiKey: "AIzaSyAzQ1Igp_eCFjyvFYfHSSl_OCgBfOWK1jg",
+  authDomain: "laurea-di-alessandra.firebaseapp.com",
+  projectId: "laurea-di-alessandra",
+  storageBucket: "laurea-di-alessandra.firebasestorage.app",
+  messagingSenderId: "377947615238",
+  appId: "1:377947615238:web:2d81f2390ddd8224129387"
+};
 
 
-.cap {
+const app = initializeApp(firebaseConfig);
 
-    font-size:60px;
-
-}
+const storage = getStorage(app);
 
 
-h1 {
 
-    color:#6B8E6B;
+const camera = document.getElementById("cameraInput");
+const gallery = document.getElementById("galleryInput");
 
-    font-size:42px;
+const preview = document.getElementById("preview");
+const uploadButton = document.getElementById("uploadButton");
 
-}
-
-
-p {
-
-    color:#555;
-
-    font-size:18px;
-
-}
+const message = document.getElementById("message");
 
 
-.line {
-
-    width:100px;
-
-    height:3px;
-
-    background:#C9A227;
-
-    margin:25px auto;
-
-}
+let selectedFile = null;
 
 
-input {
 
-    display:none;
+function showPhoto(file) {
+
+    if (!file) return;
+
+    selectedFile = file;
+
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+
+        preview.src = e.target.result;
+
+        preview.classList.remove("hidden");
+
+        uploadButton.classList.remove("hidden");
+
+    };
+
+    reader.readAsDataURL(file);
 
 }
 
 
 
-.button,
-.upload {
+camera.addEventListener("change", (e) => {
 
-    display:block;
+    showPhoto(e.target.files[0]);
 
-    width:100%;
-
-    padding:18px;
-
-    margin:15px 0;
-
-    border-radius:15px;
-
-    background:#6B8E6B;
-
-    color:white;
-
-    font-size:17px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    border:none;
-
-    box-sizing:border-box;
-
-}
+});
 
 
-.second {
+gallery.addEventListener("change", (e) => {
 
-    background:white;
+    showPhoto(e.target.files[0]);
 
-    color:#6B8E6B;
-
-    border:2px solid #C9A227;
-
-}
-
-
-button {
-
-    font-family:inherit;
-
-}
+});
 
 
 
-#preview {
+uploadButton.addEventListener("click", async (e) => {
 
-    width:100%;
-
-    margin-top:20px;
-
-    border-radius:15px;
-
-}
+    e.preventDefault();
 
 
-.hidden {
-
-    display:none;
-
-}
+    console.log("UPLOAD PREMUTO");
 
 
-footer {
+    if (!selectedFile) {
 
-    margin-top:30px;
+        message.innerHTML = "Nessuna foto selezionata";
 
-    color:#888;
+        return;
 
-}
+    }
+
+
+    message.innerHTML = "Caricamento in corso... 📸";
+
+
+    try {
+
+
+        const fileRef = ref(
+            storage,
+            "photos/" + Date.now() + "-" + selectedFile.name
+        );
+
+
+        await uploadBytes(
+            fileRef,
+            selectedFile
+        );
+
+
+        message.innerHTML =
+        "✨ Foto caricata con successo!";
+
+
+    } catch(error) {
+
+
+        message.innerHTML =
+        "Errore: " + error.message;
+
+
+        console.log(error);
+
+    }
+
+
+});
