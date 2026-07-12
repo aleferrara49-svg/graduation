@@ -2,149 +2,78 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
 
-    <title>Alessandra's Graduation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="theme-color" content="#6B8E6B">
+<title>Alessandra's Graduation</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="style.css">
 
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="style.css">
 </head>
 
 
 <body>
 
-    <div class="background-decoration"></div>
+<div class="card">
 
-    <main class="container">
+    <div class="cap">🎓</div>
 
-        <div class="card">
+    <h1>Alessandra's Graduation</h1>
 
-            <div class="cap">
-                🎓
-            </div>
-
-
-            <h1>
-                Alessandra's Graduation
-            </h1>
+    <p>
+        Capture a memory and share it with Alessandra.
+    </p>
 
 
-            <p class="subtitle">
-                Capture a memory and share it with Alessandra.
-            </p>
+    <div class="line"></div>
 
 
-            <div class="gold-line"></div>
+    <input 
+        id="cameraInput" 
+        type="file" 
+        accept="image/*"
+    >
 
-
-            <label class="upload-button">
-
-                📸 Take a Photo
-
-                <input
-                    id="cameraInput"
-                    type="file"
-                    accept="image/*"
-                    capture="environment">
-
-            </label>
-
-
-            <label class="gallery-button">
-
-                🖼 Choose from Gallery
-
-                <input
-                    id="galleryInput"
-                    type="file"
-                    accept="image/*">
-
-            </label>
+    <label for="cameraInput" class="button">
+        📸 Take a Photo
+    </label>
 
 
 
-            <div id="previewContainer" class="hidden">
+    <input 
+        id="galleryInput" 
+        type="file" 
+        accept="image/*"
+    >
 
-                <img 
-                    id="previewImage"
-                    alt="Photo preview">
-
-            </div>
-
-
-
-            <button 
-                id="uploadButton" 
-                class="upload hidden">
-
-                Upload Photo
-
-            </button>
+    <label for="galleryInput" class="button second">
+        🖼 Choose from Gallery
+    </label>
 
 
 
-
-            <div id="progressContainer" class="hidden">
-
-                <div class="progress-bar">
-
-                    <div id="progressFill"></div>
-
-                </div>
+    <img id="preview" class="hidden">
 
 
-                <p id="progressText">
-                    Uploading...
-                </p>
-
-            </div>
+    <button id="uploadButton" class="upload hidden">
+        Upload Photo
+    </button>
 
 
+    <p id="message"></p>
 
 
-
-            <div id="successMessage" class="hidden">
-
-                <h2>
-                    ✨ Thank you!
-                </h2>
-
-                <p>
-                    Your photo has been added to Alessandra's memories.
-                </p>
-
-            </div>
+    <footer>
+        Made with ❤️ for Alessandra
+    </footer>
 
 
+</div>
 
 
-            <footer>
-                Made with ❤️ for Alessandra
-            </footer>
-
-
-        </div>
-
-    </main>
-
-
-
-
-    <canvas id="confetti"></canvas>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-
-
-    <script type="module" src="script.js"></script>
+<script type="module" src="script.js"></script>
 
 
 </body>
