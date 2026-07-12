@@ -1,11 +1,49 @@
-rules_version = '2';
+const camera = document.getElementById("cameraInput");
+const gallery = document.getElementById("galleryInput");
 
-service firebase.storage {
-  match /b/{bucket}/o {
+const preview = document.getElementById("preview");
+const uploadButton = document.getElementById("uploadButton");
 
-    match /photos/{allPaths=**} {
-      allow read, write: if true;
-    }
+const message = document.getElementById("message");
 
-  }
+
+function showPhoto(file) {
+
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+
+        preview.src = e.target.result;
+
+        preview.classList.remove("hidden");
+
+        uploadButton.classList.remove("hidden");
+
+    };
+
+    reader.readAsDataURL(file);
+
 }
+
+
+camera.addEventListener("change", function() {
+
+    showPhoto(this.files[0]);
+
+});
+
+
+gallery.addEventListener("change", function() {
+
+    showPhoto(this.files[0]);
+
+});
+
+
+uploadButton.addEventListener("click", function() {
+
+    message.innerHTML = "Foto pronta per essere caricata 📸";
+
+});
